@@ -1,6 +1,5 @@
 # CPT264 Assignment 1
 
----------------
 Basic
 ---------------
 
@@ -17,7 +16,6 @@ freemem | diskfree | quota | groups | history
 	history	- Displays a history of commands that have been entered into the current shell
 
 
-----------------
 Advanced
 ----------------
 
@@ -33,7 +31,6 @@ Example:	./advanced -b \*.php php-files-folder
 											and copies them to the destination
 
 
----------------
 Userman
 ---------------
 
@@ -50,7 +47,6 @@ userid user | groupid user | comment user | home user | shell user
 	shell user 		- Displays the default login shell for the user specified
 
 
---------------
 Sysman
 --------------
 
@@ -63,14 +59,12 @@ Users will be prompted with a menu, at which they may enter numbers correspondin
 to navigate the system.
 
 
-------------------
 Known issues
 ------------------
 
 './basic quota' does not correctly display quota.
 
 
------------------
 Other notes
 -----------------
 
