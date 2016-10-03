@@ -1,15 +1,12 @@
-# CPT264
-####################################
-	  				README
-####################################
+# CPT264 Assignment 1
 
 ---------------
-	  Basic
+Basic
 ---------------
 
 The basic script retrieves basic information about the system and the current user.
 
-Example:		./basic freemem
+Example:	./basic freemem
 
 freemem | diskfree | quota | groups | history
 	
@@ -21,12 +18,12 @@ freemem | diskfree | quota | groups | history
 
 
 ----------------
-	 Advanced
+Advanced
 ----------------
 
 The advanced script retrieves system information or performs a backup.
 
-Example:		./advanced -b \*.php php-files-folder
+Example:	./advanced -b \*.php php-files-folder
 
 -p | -o | -b wildcard destination
 
@@ -37,12 +34,12 @@ Example:		./advanced -b \*.php php-files-folder
 
 
 ---------------
-	 Userman
+Userman
 ---------------
 
 The userman script retrieves information about the user from the /etc/passwd file.
 
-Example:		./userman groupid ryan
+Example:	./userman groupid ryan
 
 userid user | groupid user | comment user | home user | shell user
 
@@ -54,27 +51,27 @@ userid user | groupid user | comment user | home user | shell user
 
 
 --------------
-	 Sysman
+Sysman
 --------------
 
 The sysman script provides an interface to easily access functions from the basic, advanced,
 and userman scripts. It takes no arguments.
 
-Example:		./sysman
+Example:	./sysman
 
 Users will be prompted with a menu, at which they may enter numbers corresponding to the menu item
 to navigate the system.
 
 
 ------------------
-	Known issues
+Known issues
 ------------------
 
 './basic quota' does not correctly display quota.
 
 
 -----------------
-	Other notes
+Other notes
 -----------------
 
 This was the first time I've had much experience with Unix at all, let alone scripting.
