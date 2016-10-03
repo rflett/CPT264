@@ -1,0 +1,64 @@
+#!/bin/sh
+#########
+# basic
+#
+# Author: Ryan Flett - s3633011
+# Date written: 29-9-2016
+# Date last modified: 3-10-2016
+#
+# This script retrieves basic information about the system and the current user.
+#
+# One argument is given to the script, from which a case switch analyses the input and runs the
+# appropriate function. Each function then returns the information requested.
+#
+#########
+
+# DISPLAYS THE AMOUNT OF FREE MEMORY AVAILABLE IN MEGABYTES
+freemem() {
+	free -m | awk 'NR==2 {print $4 " MB"}'
+}
+
+# DISPLAYS DISK SPACE FREE PER PARTITION
+diskfree() {
+	df -h | awk 'NR>1 {print $4 " free on " $1}' 2>/dev/null
+}
+
+# DISPLAYS DISK QUOTA USAGE FOR CURRENT USER
+quota() {
+	quota -u "$USER" 2>/dev/null
+}
+
+# DISPLAYS GROUPS OF CURRENT USER
+getGroups() {
+	groups "$USER" 2>/dev/null
+}
+
+# DISPLAYS SHELL COMMAND HISTORY FOR CURRENT USER
+getShellHistory() {
+	dir=$(eval echo ~"$USER")
+	emacs -nw "$dir"/.bash_history
+}
+
+# TAKES ARGUMENTS FOR BASIC.SH AND RUNS RELEVANT FUNCTION
+case $1 in
+	freemem)
+		freemem
+		;;
+	diskfree)
+		diskfree
+		;;
+	quota)
+		quota
+		;;
+	groups)
+		getGroups
+		;;
+	history)
+		getShellHistory
+		;;
+	*)
+		# IF AN INCORRECT ARGUMENT IS PARSED, DISPLAY PROPER USAGE
+		echo "Usage: $0 [freemem | diskfree | quota | groups | history]"
+		exit 0
+esac
+
