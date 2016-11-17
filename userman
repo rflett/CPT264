@@ -1,0 +1,49 @@
+#!/bin/sh
+#########
+# userman
+#
+# Author: Ryan Flett - s3633011
+# Date written: 29-9-2016
+# Date last modified: 3-10-2016
+#
+# This script retrieves information about the user from the /etc/passwd file.
+#
+# The script takes two arguments, the desired userInfo and the user. Once the user is validated
+# a case switch is used to analyse the input and return the appropriate information.
+#
+#########
+
+# IF NO ARGUMENT PROVIDED DISPLAY USAGE
+if [ ! -z "$2" ]; then
+
+	# FIND EXACT MATCH OF SPECIFIED USER IN PASSWD FILE
+	# SEARCHES FOR EXACT USER NAME MATCH AT START OF LINE FOLLOWED BY A COLON
+	user=$(grep "^\<$2\>:" /etc/passwd)
+
+	# CHECK IF USER EXISTS
+	if [ ! -z "$user" ]; then
+		# USER EXISTS
+	
+		# RETRIEVE APPROPRIATE COLUMN FOR USER
+		case $1 in
+			userid)  echo "$user" | cut --delimiter=: -f3 ;;
+			groupid) echo "$user" | cut --delimiter=: -f4 ;;
+			comment) echo "$user" | cut --delimiter=: -f5 ;;
+			home)    echo "$user" | cut --delimiter=: -f6 ;;
+			shell)   echo "$user" | cut --delimiter=: -f7 ;;
+			*)	 echo "Usage: $0 [userid user | groupid user | comment user | home user | shell user]"
+				 exit 0
+		esac
+
+	else
+		# USER DOES NOT EXIST
+		echo "Specified user does not exist."
+		echo "Usage: $0 [userid user | groupid user | comment user | home user | shell user]"
+		exit 0
+	fi
+
+else
+	echo "Usage: $0 [userid user | groupid user | comment user | home user | shell user]"
+	exit 0
+fi
+
